@@ -1,0 +1,10 @@
+---
+- name: Elasticsearch with custom configuration
+  hosts: elastic01
+  become: yes
+  become_user: root
+  roles:
+    - { role: ansible-elasticsearch, es_instance_name: "elastic01"}
+    - role: kibana
+  vars:
+    es_scripts: false

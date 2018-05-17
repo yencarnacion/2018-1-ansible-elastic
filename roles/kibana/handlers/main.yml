@@ -1,0 +1,5 @@
+---
+- name: restart elasticsearch
+  systemd: name={{es_instance_name}}_elasticsearch state=restarted
+- name: restart kibana
+  systemd: name=kibana state=restarted

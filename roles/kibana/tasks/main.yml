@@ -1,0 +1,44 @@
+---
+# From https://www.elastic.co/guide/en/kibana/6.2/deb.html#deb-running-init
+
+- name: Download and install the public signing key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch 
+    state: present
+
+# may need to install the apt-transport-https package on Ubuntu before proceeding:
+- name: Install apt-transport-https
+  apt: pkg=apt-transport-https state=present
+
+- name: Add Kibana repository
+  apt_repository:
+    repo: 'deb https://artifacts.elastic.co/packages/6.x/apt stable main'
+    state: present
+    update_cache: yes
+
+- name: Install Kibana.
+  apt: pkg=kibana state=present
+
+- name: Configure Kibana to automatically start during bootup
+  become: yes
+  become_user: root
+  shell: /bin/systemctl daemon-reload
+
+- name: Configure Kibana to automatically start during bootup
+  become: yes
+  become_user: root
+  shell: /bin/systemctl enable kibana.service
+
+#- name: Configure Kibana
+#  lineinfile: >
+#    dest=/etc/kibana/kibana.yml
+#    regexp="{{ item.regexp }}"
+#    line="{{ item.line }}"
+#    state=present
+#  with_items:
+#     - { regexp: 'server\.host', line: 'server.host: {{hostvars[inventory_hostname].ansible_default_ipv4.address}}' }
+#     - { regexp: 'elasticsearch\.url:', line: 'elasticsearch.url: "http://{{hostvars[inventory_hostname].ansible_default_ipv4.address}}:9200" ' }
+#  notify: restart elasticsearch
+
+- name: Start Kibana
+  systemd: name=kibana state=started enabled=yes

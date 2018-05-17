@@ -1,0 +1,46 @@
+== 2018-1-ansible-elastic
+Provision a one node elasticsearch Ansible.
+
+=== Notes
+Uses the official Ansible role for Elasticsearch
+from https://github.com/elastic/ansible-elasticsearch
+
+=== License
+    Copyright (c) 2018 Yamir Encarnación <yencarnacion@webninjapr.com> 
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+        http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+=== Other
+* Kibana is also installed.
+* May fail silently if there is not enough memory.  Probably needs 2 GB
+  of RAM minimum on the machine to work.
+
+=== How to run
+.To get this project working, perform the minimum steps:
+* Install the dependencies. See DEPENDENCIES.adoc 
+----
+ $ git clone --recursive git://github.com/yencarnacion/2018-1-ansible-elastic.git
+ $ cd 2018-1-ansible-elastic
+ $ ansible-playbook elastic.yml --connection=local
+----
+
+The node will be running on localhost
+
+To figure out the ip address of localhost do
+----
+$ ip address
+----
+
+To test elasticsearch is up do `curl http://<localhost ip address>:9200`   
+ +
+To test kibana is up visit http://<localhost ip address>:5601/   

@@ -1,0 +1,18 @@
+== 2018-1-ansible-elastic Project Dependencies
+
+=== What you need to run on OSX
+.Download and install the following:
+* install Git (see instructions below)
+* install Ansible (see instructions below)
+
+.Install Git (on Ubuntu)
+----
+sudo apt-get install git
+----
+
+.Install Ansible (on Ubuntu)
+----
+$ sudo apt-get install python-setuptools
+$ sudo easy_install pip
+$ sudo pip install ansible
+----
