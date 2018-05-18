@@ -4,7 +4,11 @@
   become: yes
   become_user: root
   roles:
-    - { role: ansible-elasticsearch, es_instance_name: "elastic01"}
+    - { role: ansible-elasticsearch, es_instance_name: inventory_hostname,
+        es_config: {
+          network.host: "{{hostvars[inventory_hostname].ansible_default_ipv4.address}}"
+        }
+      }
     - role: kibana
   vars:
     es_scripts: false
