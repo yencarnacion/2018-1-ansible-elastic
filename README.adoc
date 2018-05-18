@@ -44,3 +44,14 @@ $ ip address
 To test elasticsearch is up do `curl http://<localhost ip address>:9200`   
  +
 To test kibana is up visit http://<localhost ip address>:5601/   
+
+=== Kibana
+* By default, will only be able to connect to kibana from localhost.  
+  To change this, do as follows
+----
+edit /etc/kibana/kibana.yml 
+server.host: "<the kibana server ip address>"
+
+$ sudo systemctl stop kibana.service                                       
+$ sudo systemctl start kibana.service
+----
