@@ -4,9 +4,10 @@
   become: yes
   become_user: root
   roles:
-    - { role: ansible-elasticsearch, es_instance_name: inventory_hostname,
+    - { role: ansible-elasticsearch, 
+        es_instance_name: inventory_hostname,
+        es_enable_xpack: false,
         es_config: {
-          es_version: "6.3.0",
           network.host: "{{hostvars[inventory_hostname].ansible_default_ipv4.address}}"
         }
       }
