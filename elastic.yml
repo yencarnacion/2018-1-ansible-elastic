@@ -6,6 +6,7 @@
   roles:
     - { role: ansible-elasticsearch, es_instance_name: inventory_hostname,
         es_config: {
+          es_version: "6.3.0",
           network.host: "{{hostvars[inventory_hostname].ansible_default_ipv4.address}}"
         }
       }
